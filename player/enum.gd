@@ -1,3 +1,3 @@
 class_name PlayerEnum
 
-enum { IDLE, WALK, JUMP, FALL }
+enum { IDLE, WALK, JUMP, FALL, LAND }

@@ -14,6 +14,7 @@ var state := PlayerEnum.FALL
 var weapon := "Gun"
 
 onready var camera := $Camera
+onready var animation_player := $AnimationPlayer
 
 func _input(event):
 	# Rotation
@@ -40,6 +41,8 @@ func _physics_process(delta):
 	# State
 	if is_on_floor() and Input.is_action_just_pressed("move_jump"):
 		set_state(PlayerEnum.JUMP, delta)
+	elif is_on_floor() and state == PlayerEnum.FALL:
+		set_state(PlayerEnum.LAND, delta)
 	elif is_on_floor() and !direction:
 		set_state(PlayerEnum.IDLE, delta)
 	elif is_on_floor() and direction:
@@ -59,6 +62,17 @@ func _physics_process(delta):
 	# Movement
 	velocity = move_and_slide_with_snap(Vector3(direction.x, velocity.y, direction.z), snap, Vector3.UP, true)
 
+func _on_Player_state_changed(new_state, _delta):
+	match new_state:
+		PlayerEnum.IDLE:
+			animation_player.play("idle")
+		PlayerEnum.WALK:
+			animation_player.play("walk")
+		PlayerEnum.JUMP:
+			animation_player.play("jump")
+		PlayerEnum.LAND:
+			animation_player.play("land")
+	
 func set_state(new_state, delta):
 	emit_signal("state_changed", new_state, delta);
 	state = new_state
