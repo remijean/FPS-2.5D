@@ -15,11 +15,10 @@ func _on_Player_shoot(weapon, _delta):
 		animation_player.play("shoot")
 
 func _on_Player_state_changed(new_state, delta):
-	match new_state:
-		PlayerEnum.IDLE:
-			set_walk_blend(0, delta)
-		PlayerEnum.WALK:
-			set_walk_blend(1, delta)
+	if new_state == PlayerEnum.WALK:
+		set_walk_blend(1, delta)
+	else:
+		set_walk_blend(0, delta)
 
 func set_walk_blend(to, delta):
 	walk_blend = lerp(walk_blend, to, 10 * delta)

@@ -18,11 +18,11 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -256, -256 ), Vector2( -256, -248 ) ]
+"values": [ Vector2( 0, -256 ), Vector2( 0, -248 ) ]
 }
 
 [sub_resource type="Animation" id=2]
-length = 0.5
+length = 0.6
 step = 0.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -31,10 +31,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 0 ]
+"values": [ 1, 2, 3, 4, 5, 0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Shoot:playing")
@@ -43,7 +43,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.0685611 ),
+"times": PoolRealArray( 0.0687101 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -63,7 +63,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -256, -256 ), Vector2( -256, -240 ) ]
+"values": [ Vector2( 0, -256 ), Vector2( 0, -240 ) ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=6]
@@ -75,7 +75,7 @@ animation = "walk"
 [sub_resource type="AnimationNodeBlend2" id=5]
 
 [sub_resource type="AnimationNodeBlendTree" id=7]
-graph_offset = Vector2( 0, 36 )
+graph_offset = Vector2( 0, 86.75 )
 nodes/Idle/node = SubResource( 6 )
 nodes/Idle/position = Vector2( 120, 120 )
 nodes/Walk/node = SubResource( 8 )
@@ -86,9 +86,9 @@ nodes/output/position = Vector2( 560, 140 )
 node_connections = [ "output", 0, "WalkBlend", "WalkBlend", 0, "Idle", "WalkBlend", 1, "Walk" ]
 
 [node name="Gun" type="Control"]
-anchor_left = 1.0
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 __meta__ = {
@@ -96,9 +96,10 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -256, -248.906 )
+position = Vector2( 0, -251.393 )
 texture = ExtResource( 1 )
-hframes = 4
+hframes = 6
+frame = 1
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
