@@ -1,9 +1,7 @@
 extends KinematicBody
 
-signal state_changed(state, delta)
-signal shoot(weapon)
-
-enum { IDLE, WALK, JUMP, FALL }
+signal state_changed(new_state, delta)
+signal shoot(weapon, delta)
 
 const GRAVITY := -15
 const JUMP_FORCE := 5
@@ -12,10 +10,10 @@ const SPEED := 10
 
 var health := 100.0
 var velocity := Vector3()
-var state = FALL
-var weapon = "Gun"
+var state := PlayerEnum.FALL
+var weapon := "Gun"
 
-onready var camera = $Camera
+onready var camera := $Camera
 
 func _input(event):
 	# Rotation
@@ -24,14 +22,14 @@ func _input(event):
 		camera.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg2rad(-90), deg2rad(90))
 
-func _process(_delta):
+func _process(delta):
 	# Death
-	if(health <= 0):
+	if health <= 0:
 		queue_free()
 	
 	# Shoot
 	if Input.is_action_pressed("shoot"):
-		emit_signal("shoot", weapon);
+		emit_signal("shoot", weapon, delta);
 
 func _physics_process(delta):
 	# Direction
@@ -41,20 +39,20 @@ func _physics_process(delta):
 	
 	# State
 	if is_on_floor() and Input.is_action_just_pressed("move_jump"):
-		set_state(JUMP, delta)
+		set_state(PlayerEnum.JUMP, delta)
 	elif is_on_floor() and !direction:
-		set_state(IDLE, delta)
+		set_state(PlayerEnum.IDLE, delta)
 	elif is_on_floor() and direction:
-		set_state(WALK, delta)
+		set_state(PlayerEnum.WALK, delta)
 	else:
-		set_state(FALL, delta)
+		set_state(PlayerEnum.FALL, delta)
 	
 	# Gravity
 	velocity.y += GRAVITY * delta
 	var snap = Vector3.DOWN
 	
 	# Jump
-	if state == JUMP:
+	if state == PlayerEnum.JUMP:
 		velocity.y = JUMP_FORCE
 		snap = Vector3.ZERO
 	
