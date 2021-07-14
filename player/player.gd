@@ -2,6 +2,7 @@ extends KinematicBody
 
 signal state_changed(new_state, delta)
 signal shoot(weapon, delta)
+signal reload(weapon, delta)
 
 const GRAVITY := -15
 const JUMP_FORCE := 5
@@ -31,6 +32,10 @@ func _process(delta):
 	# Shoot
 	if Input.is_action_pressed("shoot"):
 		emit_signal("shoot", weapon, delta);
+		
+	# Reload
+	if Input.is_action_just_pressed("reload"):
+		emit_signal("reload", weapon, delta);
 
 func _physics_process(delta):
 	# Direction

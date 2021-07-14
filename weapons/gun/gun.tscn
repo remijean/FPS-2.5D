@@ -1,10 +1,40 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://weapons/gun/sprite.png" type="Texture" id=1]
 [ext_resource path="res://weapons/gun/gun.gd" type="Script" id=2]
 [ext_resource path="res://weapons/gun/shoot.wav" type="AudioStream" id=3]
+[ext_resource path="res://weapons/gun/reload.wav" type="AudioStream" id=5]
+[ext_resource path="res://weapons/gun/dry.wav" type="AudioStream" id=6]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=2]
+resource_name = "dry"
+length = 0.24
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Dry:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.08 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=1]
 resource_name = "idle"
 length = 1.6
 loop = true
@@ -18,11 +48,50 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -256 ), Vector2( 0, -248 ) ]
+"values": [ Vector2( 0, -320 ), Vector2( 0, -310 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-length = 0.6
+[sub_resource type="Animation" id=3]
+resource_name = "reload"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 640, 720 ), Vector2( 640, 1280 ), Vector2( 640, 1280 ), Vector2( 640, 720 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Reload:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.4
 step = 0.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -31,10 +100,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 2, 3, 4, 5, 0 ]
+"values": [ 1, 2, 3, 4, 0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Shoot:playing")
@@ -43,14 +112,13 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.0687101 ),
+"times": PoolRealArray( 0.08 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "walk"
+[sub_resource type="Animation" id=5]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -63,24 +131,24 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -256 ), Vector2( 0, -240 ) ]
+"values": [ Vector2( 0, -320 ), Vector2( 0, -300 ) ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "walk"
 
-[sub_resource type="AnimationNodeBlend2" id=5]
+[sub_resource type="AnimationNodeBlend2" id=8]
 
-[sub_resource type="AnimationNodeBlendTree" id=7]
-graph_offset = Vector2( 0, 86.75 )
+[sub_resource type="AnimationNodeBlendTree" id=9]
+graph_offset = Vector2( -53.2787, 49.5 )
 nodes/Idle/node = SubResource( 6 )
 nodes/Idle/position = Vector2( 120, 120 )
-nodes/Walk/node = SubResource( 8 )
+nodes/Walk/node = SubResource( 7 )
 nodes/Walk/position = Vector2( 120, 240 )
-nodes/WalkBlend/node = SubResource( 5 )
+nodes/WalkBlend/node = SubResource( 8 )
 nodes/WalkBlend/position = Vector2( 340, 140 )
 nodes/output/position = Vector2( 560, 140 )
 node_connections = [ "output", 0, "WalkBlend", "WalkBlend", 0, "Idle", "WalkBlend", 1, "Walk" ]
@@ -96,23 +164,29 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -251.393 )
+position = Vector2( 0, -318.13 )
 texture = ExtResource( 1 )
-hframes = 6
-frame = 1
+hframes = 5
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = 16.0
-bus = "Weapons"
+
+[node name="Reload" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Dry" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 9 )
-anims/shoot = SubResource( 2 )
-anims/walk = SubResource( 3 )
+anims/dry = SubResource( 2 )
+anims/idle = SubResource( 1 )
+anims/reload = SubResource( 3 )
+anims/shoot = SubResource( 4 )
+anims/walk = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 7 )
+tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/WalkBlend/blend_amount = 0
