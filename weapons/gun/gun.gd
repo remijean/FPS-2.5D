@@ -1,14 +1,14 @@
 extends Control
 
-var walk_blend := 0.0
-var ammo := AMMO_MAX
+signal ammo_changed(new_ammo)
+
+var current_ammo := MAX_AMMO
 var isReloading = false
 var isShooting = false
 
-const AMMO_MAX = 10
+const MAX_AMMO = 10
 
 onready var animation_player := $AnimationPlayer
-onready var animation_tree := $AnimationTree
 
 func _on_Player_shoot(weapon, _delta):
 	# Do nothing if the weapon is not used
@@ -18,16 +18,15 @@ func _on_Player_shoot(weapon, _delta):
 	# Shoot
 	if !isShooting && !isReloading:
 		isShooting = true
-		# Ammo OK = shoot
-		if ammo:
+		var new_ammo = current_ammo
+		if current_ammo:
 			animation_player.play("shoot")
-			ammo = ammo - 1
-		# Ammo KO = dry
+			new_ammo -= 1
 		else:
 			animation_player.play("dry")
 		yield(animation_player, "animation_finished")
+		set_ammo(new_ammo)
 		isShooting = false
-		print_debug(ammo)
 
 func _on_Player_reload(weapon, _delta):
 	# Do nothing if the weapon is not used
@@ -40,16 +39,9 @@ func _on_Player_reload(weapon, _delta):
 		isReloading = true
 		animation_player.play("reload")
 		yield(animation_player, "animation_finished")
-		ammo = AMMO_MAX
+		set_ammo(MAX_AMMO)
 		isReloading = false
-		print_debug(ammo)
 
-func _on_Player_state_changed(new_state, delta):
-	if new_state == PlayerEnum.WALK:
-		set_walk_blend(1, delta)
-	else:
-		set_walk_blend(0, delta)
-
-func set_walk_blend(to, delta):
-	walk_blend = lerp(walk_blend, to, 10 * delta)
-	animation_tree.set("parameters/WalkBlend/blend_amount", walk_blend)
+func set_ammo(new_ammo):
+	current_ammo = new_ammo
+	emit_signal("ammo_changed", new_ammo)

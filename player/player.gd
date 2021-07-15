@@ -9,6 +9,7 @@ const JUMP_FORCE := 5
 const MOUSE_SENSITIVITY := 0.005
 const SPEED := 10
 
+var walk_blend := 0.0
 var health := 100.0
 var velocity := Vector3()
 var state := PlayerEnum.FALL
@@ -16,6 +17,7 @@ var weapon := "Gun"
 
 onready var camera := $Camera
 onready var animation_player := $AnimationPlayer
+onready var animation_tree := $AnimationTree
 
 func _input(event):
 	# Rotation
@@ -31,11 +33,11 @@ func _process(delta):
 	
 	# Shoot
 	if Input.is_action_pressed("shoot"):
-		emit_signal("shoot", weapon, delta);
+		emit_signal("shoot", weapon, delta)
 		
 	# Reload
 	if Input.is_action_just_pressed("reload"):
-		emit_signal("reload", weapon, delta);
+		emit_signal("reload", weapon, delta)
 
 func _physics_process(delta):
 	# Direction
@@ -67,17 +69,25 @@ func _physics_process(delta):
 	# Movement
 	velocity = move_and_slide_with_snap(Vector3(direction.x, velocity.y, direction.z), snap, Vector3.UP, true)
 
-func _on_Player_state_changed(new_state, _delta):
+func _on_Player_state_changed(new_state, delta):
 	match new_state:
 		PlayerEnum.IDLE:
 			animation_player.play("idle")
+			set_walk_blend(0, delta)
 		PlayerEnum.WALK:
 			animation_player.play("walk")
+			set_walk_blend(1, delta)
 		PlayerEnum.JUMP:
 			animation_player.play("jump")
+			set_walk_blend(0, delta)
 		PlayerEnum.LAND:
 			animation_player.play("land")
+			set_walk_blend(0, delta)
 	
 func set_state(new_state, delta):
-	emit_signal("state_changed", new_state, delta);
+	emit_signal("state_changed", new_state, delta)
 	state = new_state
+
+func set_walk_blend(to, delta):
+	walk_blend = lerp(walk_blend, to, 10 * delta)
+	animation_tree.set("parameters/WalkBlend/blend_amount", walk_blend)
