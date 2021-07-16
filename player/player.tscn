@@ -11,10 +11,9 @@
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=2]
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[sub_resource type="Animation" id=3]
 length = 1.6
 loop = true
 tracks/0/type = "value"
@@ -30,8 +29,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 10 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "jump"
+[sub_resource type="Animation" id=4]
 length = 0.96
 step = 1.0
 tracks/0/type = "value"
@@ -47,8 +45,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "land"
+[sub_resource type="Animation" id=5]
 length = 0.42
 tracks/0/type = "value"
 tracks/0/path = NodePath("Land:playing")
@@ -63,7 +60,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -169,7 +166,7 @@ __meta__ = {
 }
 
 [node name="HUD" type="CanvasLayer" parent="."]
-script = SubResource( 6 )
+script = SubResource( 2 )
 
 [node name="Footstep" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
@@ -181,10 +178,10 @@ stream = ExtResource( 5 )
 stream = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 2 )
-anims/jump = SubResource( 3 )
-anims/land = SubResource( 4 )
-anims/walk = SubResource( 5 )
+anims/idle = SubResource( 3 )
+anims/jump = SubResource( 4 )
+anims/land = SubResource( 5 )
+anims/walk = SubResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 10 )
