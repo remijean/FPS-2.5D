@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://weapons/gun/gun.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
@@ -11,9 +11,7 @@
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 
-[sub_resource type="GDScript" id=2]
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 length = 1.6
 loop = true
 tracks/0/type = "value"
@@ -29,7 +27,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 10 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 0.96
 step = 1.0
 tracks/0/type = "value"
@@ -45,7 +43,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.42
 tracks/0/type = "value"
 tracks/0/path = NodePath("Land:playing")
@@ -60,7 +58,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -88,21 +86,21 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 20 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="AnimationNodeBlend2" id=7]
+[sub_resource type="AnimationNodeBlend2" id=6]
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "walk"
 
-[sub_resource type="AnimationNodeBlendTree" id=10]
+[sub_resource type="AnimationNodeBlendTree" id=9]
 graph_offset = Vector2( -186.922, 50.75 )
-nodes/Blend2/node = SubResource( 7 )
+nodes/Blend2/node = SubResource( 6 )
 nodes/Blend2/position = Vector2( 100, 100 )
-nodes/Idle/node = SubResource( 8 )
+nodes/Idle/node = SubResource( 7 )
 nodes/Idle/position = Vector2( -100, 80 )
-nodes/Walk/node = SubResource( 9 )
+nodes/Walk/node = SubResource( 8 )
 nodes/Walk/position = Vector2( -100, 200 )
 nodes/output/position = Vector2( 320, 100 )
 node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Idle", "Blend2", 1, "Walk" ]
@@ -151,23 +149,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Ammo" type="Label" parent="CanvasLayer/HUD"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -100.0
-margin_top = -100.0
-text = "10"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HUD" type="CanvasLayer" parent="."]
-script = SubResource( 2 )
-
 [node name="Footstep" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
@@ -178,17 +159,16 @@ stream = ExtResource( 5 )
 stream = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 3 )
-anims/jump = SubResource( 4 )
-anims/land = SubResource( 5 )
-anims/walk = SubResource( 6 )
+anims/idle = SubResource( 2 )
+anims/jump = SubResource( 3 )
+anims/land = SubResource( 4 )
+anims/walk = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 10 )
+tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/Blend2/blend_amount = 0
 
 [connection signal="reload" from="." to="CanvasLayer/Weapons/Gun" method="_on_Player_reload"]
 [connection signal="shoot" from="." to="CanvasLayer/Weapons/Gun" method="_on_Player_shoot"]
 [connection signal="state_changed" from="." to="." method="_on_Player_state_changed"]
-[connection signal="ammo_changed" from="CanvasLayer/Weapons/Gun" to="CanvasLayer/HUD" method="_on_Gun_ammo_changed"]

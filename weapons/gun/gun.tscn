@@ -1,80 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://weapons/gun/sprite.png" type="Texture" id=1]
 [ext_resource path="res://weapons/gun/gun.gd" type="Script" id=2]
 [ext_resource path="res://weapons/gun/shoot.wav" type="AudioStream" id=3]
-[ext_resource path="res://weapons/gun/reload.wav" type="AudioStream" id=5]
-[ext_resource path="res://weapons/gun/dry.wav" type="AudioStream" id=6]
-
-[sub_resource type="Animation" id=1]
-resource_name = "dry"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 1, 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Dry:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=3]
-resource_name = "reload"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 640, 720 ), Vector2( 640, 1280 ), Vector2( 640, 1280 ), Vector2( 640, 720 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Reload:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.25 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=4]
-length = 0.4
+length = 0.32
 step = 0.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -83,10 +14,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.16 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 1, 2, 3, 4, 0 ]
+"values": [ 1, 0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Shoot:playing")
@@ -95,7 +26,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.08 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -114,19 +45,11 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -320 )
 texture = ExtResource( 1 )
-hframes = 5
+hframes = 2
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = 16.0
 
-[node name="Reload" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-
-[node name="Dry" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/dry = SubResource( 1 )
-anims/reload = SubResource( 3 )
-anims/shoot = SubResource( 4 )
+anims/shoot = SubResource( 3 )
