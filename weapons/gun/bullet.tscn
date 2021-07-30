@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://projectile/projectile.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.701961, 0.2, 0.2, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+size = Vector3( 0.2, 0.2, 0.2 )
+
+[node name="Bullet" type="KinematicBody"]
+script = ExtResource( 1 )
+damage = 10
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Body" type="MeshInstance" parent="."]
+mesh = SubResource( 3 )
+material/0 = null

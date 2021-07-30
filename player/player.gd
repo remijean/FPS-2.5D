@@ -1,8 +1,7 @@
 extends KinematicBody
 
 signal state_changed(new_state, delta)
-signal shoot(weapon, delta)
-signal reload(weapon, delta)
+signal shoot(weapon, muzzle, ray_cast, delta)
 
 const GRAVITY := -15
 const JUMP_FORCE := 5
@@ -18,6 +17,8 @@ var weapon := "Gun"
 onready var camera := $Camera
 onready var animation_player := $AnimationPlayer
 onready var animation_tree := $AnimationTree
+onready var ray_cast := $Camera/RayCast
+onready var muzzle := $Camera/Muzzle
 
 func _input(event):
 	# Rotation
@@ -33,11 +34,7 @@ func _process(delta):
 	
 	# Shoot
 	if Input.is_action_pressed("shoot"):
-		emit_signal("shoot", weapon, delta)
-		
-	# Reload
-	if Input.is_action_just_pressed("reload"):
-		emit_signal("reload", weapon, delta)
+		emit_signal("shoot", weapon, muzzle, ray_cast, delta)
 
 func _physics_process(delta):
 	# Direction
