@@ -4,7 +4,7 @@ var isShooting = false
 
 onready var animation_player := $AnimationPlayer
 
-const BULLET = preload("res://weapons/gun/bullet.tscn")
+const BULLET = preload("res://scenes/weapons/gun/bullet.tscn")
 
 func _on_Player_shoot(weapon, muzzle, ray_cast, _delta):
 	# Do nothing if the weapon is not used

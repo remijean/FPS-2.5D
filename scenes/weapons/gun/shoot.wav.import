@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/hurt.wav-f7645b9731c053d66aaeb8e0f288a157.sample"
+path="res://.import/shoot.wav-9c8d7905c6c98fd2dec8e34ce40374cb.sample"
 
 [deps]
 
-source_file="res://player/hurt.wav"
-dest_files=[ "res://.import/hurt.wav-f7645b9731c053d66aaeb8e0f288a157.sample" ]
+source_file="res://scenes/weapons/gun/shoot.wav"
+dest_files=[ "res://.import/shoot.wav-9c8d7905c6c98fd2dec8e34ce40374cb.sample" ]
 
 [params]
 

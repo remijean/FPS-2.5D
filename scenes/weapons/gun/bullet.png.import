@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/sand.png-4587af0e9c4835874334fe1d79fb6f74.s3tc.stex"
-path.etc2="res://.import/sand.png-4587af0e9c4835874334fe1d79fb6f74.etc2.stex"
+path.s3tc="res://.import/bullet.png-beec797ebb105126ae717bcc8ecadeef.s3tc.stex"
+path.etc2="res://.import/bullet.png-beec797ebb105126ae717bcc8ecadeef.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://maps/sand.png"
-dest_files=[ "res://.import/sand.png-4587af0e9c4835874334fe1d79fb6f74.s3tc.stex", "res://.import/sand.png-4587af0e9c4835874334fe1d79fb6f74.etc2.stex" ]
+source_file="res://scenes/weapons/gun/bullet.png"
+dest_files=[ "res://.import/bullet.png-beec797ebb105126ae717bcc8ecadeef.s3tc.stex", "res://.import/bullet.png-beec797ebb105126ae717bcc8ecadeef.etc2.stex" ]
 
 [params]
 
