@@ -59,5 +59,8 @@ billboard = 1
 frames = SubResource( 7 )
 animation = "bullet_idle"
 
+[node name="Light" type="OmniLight" parent="."]
+light_color = Color( 0.976471, 0.921569, 0.921569, 1 )
+
 [connection signal="state_changed" from="." to="." method="_on_Projectile_state_changed"]
 [connection signal="animation_finished" from="Body" to="." method="_on_Body_animation_finished"]

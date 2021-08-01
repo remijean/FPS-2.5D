@@ -3,6 +3,7 @@ extends KinematicBody
 signal state_changed(new_state)
 
 onready var body = $Body
+onready var light = $Light
 
 var collider
 var state := ProjectileEnum.IDLE
@@ -32,6 +33,7 @@ func _on_Projectile_state_changed(new_state):
 		ProjectileEnum.IDLE:
 			body.play(type + "_idle")
 		ProjectileEnum.IMPACT:
+			light.set_param(light.PARAM_ENERGY, 0)
 			speed = 0
 			body.play(type + "_impact")
 			if collider.is_in_group("Enemy"):

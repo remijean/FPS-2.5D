@@ -46,9 +46,11 @@ __meta__ = {
 position = Vector2( 0, -320 )
 texture = ExtResource( 1 )
 hframes = 2
+frame = 1
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "Weapons"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/shoot = SubResource( 1 )

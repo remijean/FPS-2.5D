@@ -4,7 +4,6 @@ signal state_changed(new_state, delta)
 signal shoot(weapon, muzzle, ray_cast, delta)
 
 const GRAVITY := -15
-const JUMP_FORCE := 5
 const MOUSE_SENSITIVITY := 0.005
 const SPEED := 10
 
@@ -43,11 +42,7 @@ func _physics_process(delta):
 	var direction = transform.basis.xform(Vector3(x, 0, z)).normalized() * SPEED
 	
 	# State
-	if is_on_floor() and Input.is_action_just_pressed("move_jump"):
-		set_state(PlayerEnum.JUMP, delta)
-	elif is_on_floor() and state == PlayerEnum.FALL:
-		set_state(PlayerEnum.LAND, delta)
-	elif is_on_floor() and !direction:
+	if is_on_floor() and !direction:
 		set_state(PlayerEnum.IDLE, delta)
 	elif is_on_floor() and direction:
 		set_state(PlayerEnum.WALK, delta)
@@ -57,11 +52,6 @@ func _physics_process(delta):
 	# Gravity
 	velocity.y += GRAVITY * delta
 	var snap = Vector3.DOWN
-	
-	# Jump
-	if state == PlayerEnum.JUMP:
-		velocity.y = JUMP_FORCE
-		snap = Vector3.ZERO
 	
 	# Movement
 	velocity = move_and_slide_with_snap(Vector3(direction.x, velocity.y, direction.z), snap, Vector3.UP, true)
@@ -74,12 +64,6 @@ func _on_Player_state_changed(new_state, delta):
 		PlayerEnum.WALK:
 			animation_player.play("walk")
 			set_walk_blend(1, delta)
-		PlayerEnum.JUMP:
-			animation_player.play("jump")
-			set_walk_blend(0, delta)
-		PlayerEnum.LAND:
-			animation_player.play("land")
-			set_walk_blend(0, delta)
 	
 func set_state(new_state, delta):
 	emit_signal("state_changed", new_state, delta)
