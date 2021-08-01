@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/weapons/gun/gun.png" type="Texture" id=1]
 [ext_resource path="res://scenes/weapons/gun/gun.gd" type="Script" id=2]
 [ext_resource path="res://scenes/weapons/gun/shoot.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
-length = 0.32
-step = 0.0
+resource_name = "idle"
+length = 0.05
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -14,22 +15,40 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.16 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.32
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 1, 0 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Shoot:playing")
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Shoot")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 3 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [node name="Gun" type="Control"]
@@ -49,8 +68,10 @@ hframes = 2
 frame = 1
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-bus = "Weapons"
+bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/shoot = SubResource( 1 )
+anims/idle = SubResource( 1 )
+anims/shoot = SubResource( 2 )
+
+[connection signal="state_changed" from="." to="." method="_on_Gun_state_changed"]

@@ -1,7 +1,7 @@
 extends KinematicBody
 
 signal state_changed(new_state, delta)
-signal shoot(weapon, muzzle, ray_cast, delta)
+signal shoot(weapon)
 
 const GRAVITY := -15
 const MOUSE_SENSITIVITY := 0.005
@@ -16,8 +16,6 @@ var weapon := "Gun"
 onready var camera := $Camera
 onready var animation_player := $AnimationPlayer
 onready var animation_tree := $AnimationTree
-onready var ray_cast := $Camera/RayCast
-onready var muzzle := $Camera/Muzzle
 
 func _input(event):
 	# Rotation
@@ -26,14 +24,14 @@ func _input(event):
 		camera.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg2rad(-90), deg2rad(90))
 
-func _process(delta):
+func _process(_delta):
 	# Death
 	if health <= 0:
 		queue_free()
 	
 	# Shoot
 	if Input.is_action_pressed("shoot"):
-		emit_signal("shoot", weapon, muzzle, ray_cast, delta)
+		emit_signal("shoot", weapon)
 
 func _physics_process(delta):
 	# Direction
