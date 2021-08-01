@@ -48,6 +48,7 @@ mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Floor"]
+collision_layer = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/Floor/StaticBody"]
 shape = SubResource( 4 )
@@ -58,6 +59,8 @@ mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Wall"]
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/Wall/StaticBody"]
 shape = SubResource( 7 )

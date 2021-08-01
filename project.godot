@@ -13,15 +13,21 @@ _global_script_classes=[ {
 "class": "PlayerEnum",
 "language": "GDScript",
 "path": "res://scenes/player/enum.gd"
+}, {
+"base": "Reference",
+"class": "ProjectileEnum",
+"language": "GDScript",
+"path": "res://scenes/projectile/enum.gd"
 } ]
 _global_script_class_icons={
-"PlayerEnum": ""
+"PlayerEnum": "",
+"ProjectileEnum": ""
 }
 
 [application]
 
 config/name="FPS 2.5D"
-run/main_scene="res://main.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -68,6 +74,14 @@ shoot={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[layer_names]
+
+3d_physics/layer_1="Player"
+3d_physics/layer_2="World"
+3d_physics/layer_3="Enemy"
+3d_physics/layer_4="Bullet"
+3d_physics/layer_20="Skybox"
 
 [physics]
 

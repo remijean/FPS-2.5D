@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/bullet.png-beec797ebb105126ae717bcc8ecadeef.s3tc.stex"
-path.etc2="res://.import/bullet.png-beec797ebb105126ae717bcc8ecadeef.etc2.stex"
+path.s3tc="res://.import/bullet_impact.png-8f954bd78740a44ec9f5373997dc3c95.s3tc.stex"
+path.etc2="res://.import/bullet_impact.png-8f954bd78740a44ec9f5373997dc3c95.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/weapons/gun/bullet.png"
-dest_files=[ "res://.import/bullet.png-beec797ebb105126ae717bcc8ecadeef.s3tc.stex", "res://.import/bullet.png-beec797ebb105126ae717bcc8ecadeef.etc2.stex" ]
+source_file="res://scenes/projectile/bullet_impact.png"
+dest_files=[ "res://.import/bullet_impact.png-8f954bd78740a44ec9f5373997dc3c95.s3tc.stex", "res://.import/bullet_impact.png-8f954bd78740a44ec9f5373997dc3c95.etc2.stex" ]
 
 [params]
 
@@ -21,12 +21,12 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=true
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=1
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
