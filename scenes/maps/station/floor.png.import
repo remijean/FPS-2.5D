@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/metal.png-6461dc7d92ecc84de892d662053eddba.s3tc.stex"
-path.etc2="res://.import/metal.png-6461dc7d92ecc84de892d662053eddba.etc2.stex"
+path.s3tc="res://.import/floor.png-582020968d6d04f99853dde157cbbad4.s3tc.stex"
+path.etc2="res://.import/floor.png-582020968d6d04f99853dde157cbbad4.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/maps/metal.png"
-dest_files=[ "res://.import/metal.png-6461dc7d92ecc84de892d662053eddba.s3tc.stex", "res://.import/metal.png-6461dc7d92ecc84de892d662053eddba.etc2.stex" ]
+source_file="res://scenes/maps/station/floor.png"
+dest_files=[ "res://.import/floor.png-582020968d6d04f99853dde157cbbad4.s3tc.stex", "res://.import/floor.png-582020968d6d04f99853dde157cbbad4.etc2.stex" ]
 
 [params]
 
