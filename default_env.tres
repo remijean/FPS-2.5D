@@ -11,4 +11,6 @@ background_sky = SubResource( 1 )
 fog_enabled = true
 fog_color = Color( 0.152941, 0.196078, 0.219608, 1 )
 fog_sun_color = Color( 0.992157, 0.976471, 0.976471, 1 )
-fog_depth_end = 30.0
+fog_depth_begin = 5.0
+fog_depth_end = 20.0
+dof_blur_far_quality = 0
