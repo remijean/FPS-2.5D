@@ -54,7 +54,6 @@ transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Body" type="AnimatedSprite3D" parent="."]
-modulate = Color( 0.94902, 0.94902, 0.94902, 1 )
 pixel_size = 0.002
 billboard = 1
 frames = SubResource( 7 )

@@ -1,4 +1,4 @@
-extends Control
+extends Sprite3D
 
 signal state_changed(new_state)
 
@@ -6,8 +6,8 @@ var state := WeaponEnum.IDLE
 
 onready var animation_player := $AnimationPlayer
 onready var player := get_owner()
-onready var muzzle := player.get_node("Camera/Muzzle")
 onready var ray_cast := player.get_node("Camera/RayCast")
+onready var muzzle := player.get_node("Camera/Muzzle")
 
 const PROJECTILE = preload("res://scenes/projectile/projectile.tscn")
 

@@ -44,7 +44,7 @@ size = Vector3( 0.1, 0.1, 0.1 )
 [sub_resource type="SpatialMaterial" id=9]
 emission_enabled = true
 emission = Color( 1, 1, 1, 1 )
-emission_energy = 0.8
+emission_energy = 16.0
 emission_operator = 0
 emission_on_uv2 = false
 
@@ -65,8 +65,9 @@ fog_depth_begin = 5.0
 fog_depth_end = 20.0
 fog_depth_curve = 2.0
 fog_transmit_enabled = true
+tonemap_mode = 3
 glow_enabled = true
-glow_strength = 1.4
+glow_strength = 0.9
 glow_blend_mode = 1
 glow_bicubic_upscale = true
 
@@ -145,7 +146,6 @@ material/0 = SubResource( 9 )
 [node name="SpotLight" type="SpotLight" parent="Light"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.1, 0 )
 light_energy = 2.5
-shadow_enabled = true
 spot_range = 30.0
 spot_angle = 80.0
 
