@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/skybox.png-cc96bec092c597b48f64acf0c692abc2.stex"
+path="res://.import/skybox.png-1b58f2cc7ae355ee5cd994f1f7835f1b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://environments/space/skybox.png"
-dest_files=[ "res://.import/skybox.png-cc96bec092c597b48f64acf0c692abc2.stex" ]
+source_file="res://scenes/maps/station/skybox.png"
+dest_files=[ "res://.import/skybox.png-1b58f2cc7ae355ee5cd994f1f7835f1b.stex" ]
 
 [params]
 
