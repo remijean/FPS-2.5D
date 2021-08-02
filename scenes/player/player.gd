@@ -62,6 +62,8 @@ func _on_Player_state_changed(new_state, delta):
 		PlayerEnum.WALK:
 			animation_player.play("walk")
 			set_walk_blend(1, delta)
+		PlayerEnum.FALL:
+			animation_player.stop()
 	
 func set_state(new_state, delta):
 	emit_signal("state_changed", new_state, delta)

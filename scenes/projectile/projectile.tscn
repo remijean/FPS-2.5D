@@ -54,13 +54,16 @@ transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Body" type="AnimatedSprite3D" parent="."]
+modulate = Color( 0.94902, 0.94902, 0.94902, 1 )
 pixel_size = 0.002
 billboard = 1
 frames = SubResource( 7 )
 animation = "bullet_idle"
 
 [node name="Light" type="OmniLight" parent="."]
-light_color = Color( 0.976471, 0.921569, 0.921569, 1 )
+light_color = Color( 0.701961, 0.2, 0.2, 1 )
+light_energy = 0.5
+light_indirect_energy = 0.5
 
 [connection signal="state_changed" from="." to="." method="_on_Projectile_state_changed"]
 [connection signal="animation_finished" from="Body" to="." method="_on_Body_animation_finished"]
