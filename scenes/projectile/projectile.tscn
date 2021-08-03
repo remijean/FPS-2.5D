@@ -8,40 +8,40 @@
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 23
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 23
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 128, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 23
 atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 128, 128 )
+region = Rect2( 256, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 23
-atlas = ExtResource( 3 )
-region = Rect2( 128, 0, 128, 128 )
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 23
-atlas = ExtResource( 3 )
-region = Rect2( 256, 0, 128, 128 )
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 128, 128 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ) ],
-"loop": true,
-"name": "bullet_idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": false,
 "name": "bullet_impact",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "bullet_idle",
+"speed": 5.0
 } ]
 
 [node name="Projectile" type="KinematicBody"]
@@ -54,6 +54,7 @@ transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Body" type="AnimatedSprite3D" parent="."]
+layers = 2
 pixel_size = 0.002
 billboard = 1
 frames = SubResource( 7 )
